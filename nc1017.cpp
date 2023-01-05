@@ -6,6 +6,8 @@
 
 std::vector<std::pair<int, std::string>> globalDat;
 
+// 就1000个数据20次查询，用啥哈希啊，直接暴力淦它~
+
 inline std::string enquiry(int x, int k) {
     int t = 0;
     for (const std::pair<int, std::string> &p: globalDat) {
