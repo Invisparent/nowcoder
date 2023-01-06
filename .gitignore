@@ -1,5 +1,4 @@
 
-.idea/modules.xml
-.idea/nowcoder.iml
-.idea/vcs.xml
-.idea/workspace.xml
+.idea
+cmake-build-debug
+CMakeLists.txt
