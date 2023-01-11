@@ -3,6 +3,11 @@
 
 // 这玩意tm竟然是二分...6
 
+// 这道题的教训很惨痛，详细的看最后的代码部分
+// 切记
+// 如果代码中出现了任何复用之前函数调用结果的部分，请确保函数相关的全局变量被正确刷新
+// 不然就会像Invisparent这个大聪明一样，跟个傻子一样，debug五个小时
+
 // Partial Accepted
 
 //#include <iostream>
@@ -73,14 +78,34 @@ int chocolateNum, dayNum;
 std::vector<int> chocolateDat, chocolateEatLog;
 std::unordered_map<long long, bool> legalDat;
 
-inline bool legalCheck(long long targetMinHappiness) {
-    auto legalIter = legalDat.find(targetMinHappiness);
-    if (legalIter != legalDat.end())
-        return legalIter->second;
+/**
+ *  CRITICAL WARNING:
+ *  When fastCheck enabled
+ *  The output sequence "chocolateEatLog" may not be refreshed
+ *  It's a FATAL BUG when output comes to here
+ */
+//inline bool legalCheck(long long targetMinHappiness) {
+inline bool legalCheck(long long targetMinHappiness, bool fastCheck = true) {
+//    auto legalIter = legalDat.find(targetMinHappiness);
+//    if (legalIter != legalDat.end())
+//        return legalIter->second;
+
+    if (fastCheck) {
+        auto legalIter = legalDat.find(targetMinHappiness);
+        if (legalIter != legalDat.end())
+            return legalIter->second;
+    }
+
+//    // Global variable initialization
+//    chocolateEatLog.clear();
+//    chocolateEatLog.reserve(dayNum);
+//    // Done
 
     // Global variable initialization
-    chocolateEatLog.clear();
-    chocolateEatLog.reserve(dayNum);
+    if (!fastCheck) {
+        chocolateEatLog.clear();
+        chocolateEatLog.reserve(dayNum);
+    }
     // Done
 
     int prevDay = 1;
@@ -99,6 +124,20 @@ inline bool legalCheck(long long targetMinHappiness) {
             break;
     }
     if (prevDay > dayNum) {
+        /**
+         * WARNING:
+         *  Without this while loop
+         *  Some chocolate may can't be consumed
+         *  And lead to Wrong Answer
+         */
+        while (chocolateIter != chocolateDat.cend()) {
+//            chocolateEatLog.push_back(dayNum);
+//            To acclerate this, refresh chocolateEatLog when necessary
+            if (!fastCheck)
+                chocolateEatLog.push_back(dayNum);
+
+            ++chocolateIter;
+        }
         legalDat[targetMinHappiness] = true;
         return true;
     }
@@ -116,8 +155,10 @@ int main() {
     // Done
 
     long long l = 1, r = 5e10 + 1, m;
+//    long long l = 1, r = 5, m;
     while (true) {
         m = (l + r) >> 1;
+//        m = 3;
         if (legalCheck(m + 1))
             l = m + 1;
         else if (!legalCheck(m))
@@ -126,6 +167,10 @@ int main() {
             break;
     }
     std::cout << m << std::endl;
+//    legalCheck(m);
+//    Force legalCheck to refresh chocolateEatLog
+    legalCheck(m, false);
+
     for (const int &i: chocolateEatLog)
         std::cout << i << std::endl;
     return 0;
