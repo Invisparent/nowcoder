@@ -155,10 +155,8 @@ int main() {
     // Done
 
     long long l = 1, r = 5e10 + 1, m;
-//    long long l = 1, r = 5, m;
     while (true) {
         m = (l + r) >> 1;
-//        m = 3;
         if (legalCheck(m + 1))
             l = m + 1;
         else if (!legalCheck(m))
