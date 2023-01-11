@@ -132,7 +132,7 @@ inline bool legalCheck(long long targetMinHappiness, bool fastCheck = true) {
          */
         while (chocolateIter != chocolateDat.cend()) {
 //            chocolateEatLog.push_back(dayNum);
-//            To acclerate this, refresh chocolateEatLog when necessary
+//            To accelerate this, refresh chocolateEatLog when necessary
             if (!fastCheck)
                 chocolateEatLog.push_back(dayNum);
 
@@ -155,10 +155,8 @@ int main() {
     // Done
 
     long long l = 1, r = 5e10 + 1, m;
-//    long long l = 1, r = 5, m;
     while (true) {
         m = (l + r) >> 1;
-//        m = 3;
         if (legalCheck(m + 1))
             l = m + 1;
         else if (!legalCheck(m))
