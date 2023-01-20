@@ -1,6 +1,9 @@
 // https://ac.nowcoder.com/acm/contest/22353/J
 // [NOIP2011]聪明的质监员
 
+// Rewritten in C
+// See ncJ.c
+
 // DNF
 // Wrong Answer
 
