@@ -23,7 +23,8 @@ long long solve(int pos) {
         // 卧槽你改bug还不改干净是吧
         // return std::min(dat[1] + 2 * dat[2] + dat[n], 2 * dat[1] + dat[n - 1] + dat[n]) + solve(pos - 2);
         // ...
-        return std::min(dat[1] + 2 * dat[2] + dat[pos], 2 * dat[1] + dat[pos - 1] + dat[pos]) + solve(pos - 2);
+        return solve(pos - 2) + std::min(dat[1] + 2 * dat[2] + dat[pos],
+                                         2 * dat[1] + dat[pos - 1] + dat[pos]);
 }
 
 int main() {
