@@ -2,7 +2,7 @@
 // 小A买彩票
 
 // Multiple Solutions
-// Naive
+// Naive using double
 
 #include <stdio.h>
 
