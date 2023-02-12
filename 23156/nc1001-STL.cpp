@@ -23,7 +23,7 @@ int main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
-    
+
     std::string str = "12345678";
     printStr(str);
     while (std::next_permutation(str.begin(), str.end()))
