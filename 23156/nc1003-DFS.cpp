@@ -6,7 +6,7 @@
 
 // DNF
 // Not Submitted
-// FUCK... In a mess
+// FUCK... Coding in a mess
 // Refactor it
 
 //#include <iostream>
