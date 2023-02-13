@@ -1,9 +1,6 @@
 // https://ac.nowcoder.com/acm/contest/23156/1003
 // 模拟战役
 
-// Multiple Solutions
-// DFS
-
 // DNF
 // Not Submitted
 // FUCK... Coding in a mess
