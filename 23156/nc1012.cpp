@@ -2,8 +2,7 @@
 // [NOIP2017]奶酪
 
 // DNF
-// Partial Accepted & TLE
-// WTF
+// See nc1012.c
 
 // Partial Accepted (70%) & TLE
 // ...?
